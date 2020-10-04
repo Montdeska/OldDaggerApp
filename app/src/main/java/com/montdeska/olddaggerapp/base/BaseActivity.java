@@ -32,4 +32,12 @@ public abstract class BaseActivity extends Activity {
     public String getInstanceId() {
         return instanceId;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) {
+            Injector.clearComponent(this);
+        }
+    }
 }
